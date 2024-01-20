@@ -1,29 +1,29 @@
 @font-face {
   font-family: MikhakBlack;
-  src: url("public/fonts/Mikhak-Black.ttf");
+  src: url("../public/fonts/Mikhak-Black.ttf");
 }
 @font-face {
   font-family: MikhakBold;
-  src: url("public/fonts/Mikhak-Bold.ttf");
+  src: url("../public/fonts/Mikhak-Bold.ttf");
 }
 @font-face {
   font-family: MikhakMedium;
-  src: url("public/fonts/Mikhak-Medium.ttf");
+  src: url("../public/fonts/Mikhak-Medium.ttf");
 }
 @font-face {
   font-family: MikhakRegular;
-  src: url("public/fonts/Mikhak-Regular.ttf");
+  src: url("../public/fonts/Mikhak-Regular.ttf");
 }
 @font-face {
   font-family: MikhakLight;
-  src: url("public/fonts/Mikhak-Light.ttf");
+  src: url("../public/fonts/Mikhak-Light.ttf");
 }
 @font-face {
   font-family: MikhakThin;
-  src: url("public/fonts/Mikhak-Thin.ttf");
+  src: url("../public/fonts/Mikhak-Thin.ttf");
 }
 
-:root {
+html {
   --bgColor: #efefef;
   --darkColor: #ffffff;
   --darkColorHover: #dbdbdb;
@@ -31,23 +31,22 @@
   --mainColorHover: #298d45;
   --textColor: #000;
   --filterInvert: 0;
-
-  /* --bgColor: #151a27;
+}
+html.dark {
+  --bgColor: #151a27;
   --darkColor: #1d212e;
   --darkColorHover: #242939;
   --mainColor: #37c25e;
   --mainColorHover: #298d45;
   --textColor: #fff;
-  --filterInvert:1; */
-
-  /* -----------Padding----------- */
-  --contPadding: 3rem;
+  --filterInvert: 1;
 }
 * {
   font-family: MikhakRegular;
   box-sizing: border-box;
 }
 body {
+  --contPadding: 3rem;
   font-family: MikhakRegular;
   /* background: url("public/Background.svg") var(--bgColor); */
   background: var(--bgColor);
@@ -62,7 +61,7 @@ body {
   position: relative;
   width: 100%;
   height: 25rem;
-  background: url("public/images/bgHeader.svg") no-repeat center center/cover, var(--bgColor);
+  background: url("../public/images/bgHeader.svg") no-repeat center center/cover, var(--bgColor);
 }
 .header__box {
   position: absolute;
@@ -665,6 +664,8 @@ body {
 .main__cards_cont {
   position: relative;
   width: 200px;
+  overflow: hidden;
+  border-radius: 1rem;
 }
 .main__cards_card {
   backdrop-filter: blur(5px) brightness(1.5);

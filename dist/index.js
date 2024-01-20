@@ -30,35 +30,9 @@ sliderBtnLeft.addEventListener("click", () => {
 
 // ========THEME========
 const themeInput = document.querySelector("#themeInput");
-const darkColors = [
-  ["--bgColor", "#151a27"],
-  ["--darkColor", "#1d212e"],
-  ["--darkColorHover", "#242939"],
-  ["--mainColor", "#37c25e"],
-  ["--mainColorHover", "#298d45"],
-  ["--textColor", "#fff"],
-  ["--filterInvert", "1"],
-];
-const lightColors = [
-  ["--bgColor", "#efefef"],
-  ["--darkColor", "#ffffff"],
-  ["--darkColorHover", "#dbdbdb"],
-  ["--mainColor", "#37c25e"],
-  ["--mainColorHover", "#298d45"],
-  ["--textColor", "#000"],
-  ["--filterInvert", "0"],
-];
 
-themeInput.addEventListener("click", (e) => {
-  if (e.target.checked) {
-    darkColors.forEach((color) => {
-      document.querySelector(":root").style.setProperty(color[0], color[1]);
-    });
-  } else {
-    lightColors.forEach((color) => {
-      document.querySelector(":root").style.setProperty(color[0], color[1]);
-    });
-  }
+themeInput.addEventListener("click", () => {
+  document.querySelector("html").classList.toggle("dark");
 });
 
 // ========MUSICS========
