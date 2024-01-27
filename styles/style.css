@@ -61,6 +61,7 @@ body {
   position: relative;
   width: 100%;
   height: 25rem;
+  stroke: var(--textColor);
   background: url("../public/images/bgHeader.svg") no-repeat center center/cover, var(--bgColor);
 }
 .header__box {
@@ -714,19 +715,39 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 .cards__card_icon_modal {
   appearance: none;
   display: none;
 }
+.cards__card_icon_cont {
+  position: relative;
+  width: fit-content;
+}
 .cards__card_icon {
   margin: 5px;
   width: 20px;
-  cursor: pointer;
+  filter: blur(1px) brightness(0.8);
+}
+.cards__card_icon_number {
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  direction: ltr;
+  font-size: small;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-family: MikhakBold;
+  color: var(--mainColor);
+  text-shadow: 1px 1px 2px black;
 }
 .cards__card_icon_play {
+  filter: none;
   width: 30px;
   fill: var(--mainColor);
+  cursor: pointer;
   transition: all ease 300ms 50ms;
 }
 .cards__card_icon_play:hover {
@@ -980,15 +1001,17 @@ body {
 }
 .player__control {
   user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }
 .player__control_icon {
-  vertical-align: middle;
   width: 20px;
-  margin: 0 8px;
   cursor: pointer;
   transition: scale ease 300ms 50ms;
 }
-.player__control_icon:hover {
+.player__control_icon:not(.player__control_icon.play_pause):hover {
   scale: 1.2;
 }
 .player__control_icon_checkbox {
@@ -996,8 +1019,35 @@ body {
   display: none;
 }
 .player__control_icon.play_pause {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  margin: 0 5px;
+}
+.player__control_icon_play_pause_loader {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: none;
+  border: 3px solid var(--mainColor);
+}
+.player__control_icon_play_pause_loader.loader {
+  animation: Loader 1s linear infinite;
+  box-shadow: 0 3px 0 0 var(--mainColor);
+  transform-origin: 25px 27px;
+  border: none;
+}
+.player__control_icon_play_pause {
   display: inline-block;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   background: var(--mainColor);
   transition: all ease 300ms;
   clip-path: polygon(
@@ -1015,7 +1065,10 @@ body {
     100% 52%
   );
 }
-.player__control_icon_checkbox:checked + .player__control_icon.play_pause {
+.player__control_icon.play_pause:hover .player__control_icon_play_pause {
+  scale: 1.15;
+}
+.player__control_icon_checkbox:checked + .player__control_icon.play_pause .player__control_icon_play_pause {
   clip-path: polygon(
     40% 0,
     0 0,
@@ -1031,6 +1084,18 @@ body {
     60% 100%
   );
 }
+@keyframes Loader {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .player__duration {
   width: 25%;
 }
@@ -1069,12 +1134,24 @@ body {
 .player__sound_icon_checkbox {
   appearance: none;
 }
-.player__sound_icon {
-  display: inline-block;
+.player__sound_icon_sound,
+.player__sound_icon_mute {
   width: 25px;
   vertical-align: middle;
   margin-left: 5px;
   cursor: pointer;
+}
+.player__sound_icon_sound {
+  display: inline-block;
+}
+.player__sound_icon_mute {
+  display: none;
+}
+.player__sound_icon_checkbox:checked + label .player__sound_icon_sound {
+  display: none;
+}
+.player__sound_icon_checkbox:checked + label .player__sound_icon_mute {
+  display: inline-block;
 }
 .player__sound_progress_renge {
   width: 5rem;
